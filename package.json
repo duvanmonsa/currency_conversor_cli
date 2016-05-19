@@ -1,0 +1,34 @@
+{
+  "name": "currencyconv",
+  "version": "1.0.0",
+  "description": "currency conversion cli",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duvanmonsa/currency_conversor_cli.git"
+  },
+  "keywords": [
+    "currency",
+    "conversor",
+    "cli",
+    "usd",
+    "cop"
+  ],
+  "author": "duvanmonsa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duvanmonsa/currency_conversor_cli/issues"
+  },
+  "homepage": "https://github.com/duvanmonsa/currency_conversor_cli#readme",
+  "preferGlobal": true,
+  "bin": {
+    "currencyconv": "index.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "currency-converter": "^0.1.12",
+    "node-rest-client": "^1.8.0"
+  }
+}

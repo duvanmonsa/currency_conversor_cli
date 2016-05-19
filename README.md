@@ -1,2 +1,6 @@
-# currency_conversor_cli
-Currency conversor cli from any currency to other any other currency 
+# Currency Conversor Cli
+Currency conversor cli from any currency to another currency
+
+# Intallation
+
+npm install -g currency_conversor_cli
