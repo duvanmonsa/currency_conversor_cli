@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
-var optimist = require('optimist').argv
-var http = require('http')
+const optimist = require('optimist').argv
+const http = require('http')
 
 if (!optimist.from && !optimist.f) {
   console.log('From param should be defined')
@@ -20,13 +20,13 @@ if (!optimist.to && !optimist.t) {
 var to = optimist.to ? optimist.to : optimist.t
 to = to.toUpperCase()
 
-var type = 'simple'
+let type = 'simple'
 
 if (optimist.ouput || optimist.o) {
   if (optimist.ouput === 'full' || optimist.o === 'full') type = 'full'
 };
 
-var amount
+let amount
 process.argv.forEach(function (value) {
   if (!isNaN(parseFloat(value)) && isFinite(value)) {
     amount = value
