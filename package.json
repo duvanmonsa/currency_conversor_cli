@@ -18,7 +18,7 @@
     "cop"
   ],
   "author": "duvanmonsa",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/duvanmonsa/currency_conversor_cli/issues"
   },
@@ -28,8 +28,6 @@
     "currencyconv": "index.js"
   },
   "dependencies": {
-    "commander": "^2.9.0",
-    "currency-converter": "^0.1.12",
-    "node-rest-client": "^1.8.0"
+    "commander": "^2.9.0"
   }
 }

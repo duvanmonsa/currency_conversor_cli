@@ -9,3 +9,8 @@ npm install -g currency_conversor_cli
 # Use
 
 currencyconv --f=USD --to=EUR  --ouput=full 100
+
+#License
+
+The MIT License (MIT)
+Copyright (c)  Duvan Monsalve
