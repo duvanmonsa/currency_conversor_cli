@@ -50,4 +50,3 @@ client.get(path, function (data, response) {
     }
   }
 })
-
