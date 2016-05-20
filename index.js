@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+'use strict'
 
 const optimist = require('optimist').argv
 const http = require('http')
@@ -27,7 +28,7 @@ if (optimist.ouput || optimist.o) {
 };
 
 let amount
-process.argv.forEach(function (value) {
+process.argv.forEach((value) => {
   if (!isNaN(parseFloat(value)) && isFinite(value)) {
     amount = value
   }
@@ -38,7 +39,7 @@ if (!amount) {
   process.exit()
 }
 
-var code = from + '_' + to
+var code = `${from}_${to}`
 
 http.get('http://free.currencyconverterapi.com/api/v3/convert?q=' + code + '&compact=ultra', (res) => {
   res.on('data', (data) => {
@@ -48,13 +49,13 @@ http.get('http://free.currencyconverterapi.com/api/v3/convert?q=' + code + '&com
     } else {
     // raw response
       if (type === 'full') {
-        console.log('Amount: ' + amount + ' ' + from)
-        console.log('From: ' + from)
-        console.log('To: ' + to)
-        console.log('Current Rate: ' + data[code] + ' ' + to)
-        console.log('Total: ' + amount * data[code] + ' ' + to)
+        console.log(`Amount: ${amount} ${from}`)
+        console.log(`From: ${from}`)
+        console.log(`To: ${to}`)
+        console.log(`Current Rate: ${data[code]} ${to}`)
+        console.log(`Total: ${amount * data[code]} ${to}`)
       } else {
-        console.log(amount * data[code] + ' ' + to)
+        console.log(`${amount * data[code]} ${to}`)
       }
     }
   })
