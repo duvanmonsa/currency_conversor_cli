@@ -1,6 +1,6 @@
 {
   "name": "currencyconv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "currency conversion cli",
   "scripts": {
     "test": "mocha ./test/conversorTest.js",
@@ -28,7 +28,8 @@
     "currencyconv": "index.js"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "optimist": "^0.6.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
