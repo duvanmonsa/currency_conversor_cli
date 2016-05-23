@@ -4,27 +4,55 @@
 const optimist = require('optimist').argv
 const http = require('http')
 
+
+if (optimist.help || optimist.h) {
+  console.log(`Options:\n
+  -f,-from        Currency that you are using as base\n
+  -t,-to          Currency that you want to convert\n
+  -s,-super       Show more details about the convert
+
+  `)
+  process.exit()
+}
+
 if (!optimist.from && !optimist.f) {
+  console.log('From param should be defined')
+  process.exit()
+} else if (optimist.f === true) {
   console.log('From param should be defined')
   process.exit()
 }
 
 var from = optimist.from ? optimist.from : optimist.f
 
+if (typeof from !== 'string') {
+  console.log('From param should be string')
+  process.exit()
+}
+
 from = from.toUpperCase()
 
 if (!optimist.to && !optimist.t) {
   console.log('To param should be defined')
   process.exit()
+} else if (optimist.t === true) {
+  console.log('To param should be defined')
+  process.exit()
 }
 
 var to = optimist.to ? optimist.to : optimist.t
+
+if (typeof to !== 'string') {
+  console.log('To param should be string')
+  process.exit()
+}
+
 to = to.toUpperCase()
 
 let type = 'simple'
 
-if (optimist.ouput || optimist.o) {
-  if (optimist.ouput === 'full' || optimist.o === 'full') type = 'full'
+if (optimist.super || optimist.s) {
+  type = 'full'
 };
 
 let amount

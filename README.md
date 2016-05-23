@@ -8,7 +8,7 @@ npm install -g currencyconv
 
 # Use
 
-currencyconv --f=USD --to=EUR  --ouput=full 100
+currencyconv --f=USD --to=EUR  --full 100
 
 #License
 
