@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "currency conversion cli",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./test/conversorTest.js",
     "lint": "standard"
   },
   "repository": {
@@ -29,5 +29,9 @@
   },
   "dependencies": {
     "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
