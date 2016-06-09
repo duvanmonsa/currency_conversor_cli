@@ -1,6 +1,5 @@
 # Currency Conversor Cli
-Currency conversor cli from any currency to another currency
-
+Currency converter cli from any currency to another currency with the free api http://free.currencyconverterapi.com/
 # Intallation
 
 npm install -g currencyconv
@@ -8,7 +7,7 @@ npm install -g currencyconv
 
 # Use
 
-currencyconv --f=USD --to=EUR  --full 100
+currencyconv -f=USD -to=EUR  -full 100
 
 #License
 
