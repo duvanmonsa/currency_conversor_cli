@@ -3,7 +3,7 @@
 
 const optimist = require('optimist')
   .usage('Usage: $0 -f [currency] -t [currency] [num]')
-  .demand(['f','t'])
+  .demand(['f', 't'])
   .alias('f', 'from')
   .describe('f', `Currency that you are using as base
 
@@ -38,7 +38,6 @@ if (typeof optimist.from !== 'string') {
 }
 
 optimist.from = optimist.from.toUpperCase()
-
 
 if (typeof optimist.to !== 'string') {
   console.log('To param should be string')
@@ -88,5 +87,3 @@ http.get('http://free.currencyconverterapi.com/api/v3/convert?q=' + code + '&com
     }
   })
 })
-
-
