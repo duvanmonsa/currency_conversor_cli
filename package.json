@@ -1,6 +1,6 @@
 {
   "name": "currencyconv",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "currency conversion cli",
   "scripts": {
     "test": "mocha ./test/conversorTest.js",

@@ -11,8 +11,7 @@ describe('Conversion Params', function () {
     // Test implementation goes here
     exec('currencyconv',
       function (err, stdout, stderr) {
-        assert.isNull(err)
-        assert.strictEqual(stdout, 'From param should be defined\n')
+        assert.isNotNull(err)
         done()
       })
   })

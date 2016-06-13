@@ -1,59 +1,51 @@
 #! /usr/bin/env node
 'use strict'
 
-const optimist = require('optimist').argv
+const optimist = require('optimist')
+  .usage('Usage: $0 -f [currency] -t [currency] [num]')
+  .demand(['f','t'])
+  .alias('f', 'from')
+  .describe('f', `Currency that you are using as base
+
+                        USD,EUR,GBP,COP...
+
+                        Ways to use it:
+
+                        -f USD, --f USD, --f=USD, --from USD, --from=USD`)
+  .alias('t', 'to')
+  .describe('t', `Currency that you want to convert
+
+                        USD,EUR,GBP,COP...
+
+                        Ways to use it:
+
+                        -t USD, --t USD, --t=USD, --to USD, --to=USD`)
+  .alias('h', 'help')
+  .alias('s', 'super')
+  .describe('s', `Show more details about the conversion
+
+                       if you don't pass this param it will show the basic information
+
+                        Ways to use it:
+
+                        -s, --s, -super, --super`)
+  .argv
 const http = require('http')
 
-
-if (optimist.help || optimist.h) {
-  console.log(`Options:\n
-  -f,-from        Currency that you are using as base\n
-  -t,-to          Currency that you want to convert\n
-  -s,-super       Show more details about the convert
-
-  `)
-  process.exit()
-}
-
-if (!optimist.from && !optimist.f) {
-  console.log('From param should be defined')
-  process.exit()
-} else if (optimist.f === true) {
-  console.log('From param should be defined')
-  process.exit()
-}
-
-var from = optimist.from ? optimist.from : optimist.f
-
-if (typeof from !== 'string') {
+if (typeof optimist.from !== 'string') {
   console.log('From param should be string')
   process.exit()
 }
 
-from = from.toUpperCase()
+optimist.from = optimist.from.toUpperCase()
 
-if (!optimist.to && !optimist.t) {
-  console.log('To param should be defined')
-  process.exit()
-} else if (optimist.t === true) {
-  console.log('To param should be defined')
-  process.exit()
-}
 
-var to = optimist.to ? optimist.to : optimist.t
-
-if (typeof to !== 'string') {
+if (typeof optimist.to !== 'string') {
   console.log('To param should be string')
   process.exit()
 }
 
-to = to.toUpperCase()
-
-let type = 'simple'
-
-if (optimist.super || optimist.s) {
-  type = 'full'
-};
+optimist.to = optimist.to.toUpperCase()
 
 let amount
 process.argv.forEach((value) => {
@@ -67,7 +59,13 @@ if (!amount) {
   process.exit()
 }
 
-var code = `${from}_${to}`
+let type = 'simple'
+
+if (optimist.s) {
+  type = 'full'
+};
+
+var code = `${optimist.from}_${optimist.to}`
 
 http.get('http://free.currencyconverterapi.com/api/v3/convert?q=' + code + '&compact=ultra', (res) => {
   res.on('data', (data) => {
@@ -75,16 +73,20 @@ http.get('http://free.currencyconverterapi.com/api/v3/convert?q=' + code + '&com
     if (!data[code]) {
       console.log('Currency no supported or bad spell')
     } else {
-    // raw response
+      // raw response
       if (type === 'full') {
-        console.log(`Amount: ${amount} ${from}`)
-        console.log(`From: ${from}`)
-        console.log(`To: ${to}`)
-        console.log(`Current Rate: ${data[code]} ${to}`)
-        console.log(`Total: ${amount * data[code]} ${to}`)
+        console.log(`Amount: ${amount} ${optimist.from}`)
+        console.log(`From: ${optimist.from}`)
+        console.log(`To: ${optimist.to}`)
+        console.log(`Current Rate: ${data[code]} ${optimist.to}`)
+        console.log(`Total: ${amount * data[code]} ${optimist.to}`)
       } else {
-        console.log(`${amount * data[code]} ${to}`)
+        console.log(`${amount * data[code]} ${optimist.to}`)
       }
+
+      console.log('---------------------------------------------------------')
     }
   })
 })
+
+
