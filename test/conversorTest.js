@@ -1,15 +1,25 @@
+/*
+ global describe
+ global it
+ */
+
 const chai = require('chai')
 const exec = require('child_process').exec
+const path = require('path')
 
 var assert = chai.assert
 
 console.log('Testing the app')
 
+var cmd = 'node ' + path.join(__dirname, '../index.js') + ' '
+
 describe('Conversion Params', function () {
   // Further code for tests goes here
   it('If no params', function (done) {
     // Test implementation goes here
-    exec('currencyconv',
+
+
+    exec(`${cmd}`,
       function (err, stdout, stderr) {
         assert.isNotNull(err)
         done()
@@ -17,7 +27,7 @@ describe('Conversion Params', function () {
   })
 
   it('If no amount', function (done) {
-    exec('currencyconv  --f=USD --to=EUR  --ouput=fulls',
+    exec(`${cmd} --f=USD --to=EUR  --ouput=fulls`,
       function (err, stdout, stderr) {
         assert.isNull(err)
         assert.strictEqual(stdout, 'Amount param should be defined\n')
@@ -28,7 +38,7 @@ describe('Conversion Params', function () {
 
 describe('Conversion Logic', function () {
   it('If currency does not exist', function (done) {
-    exec('currencyconv  --f=USDG --to=EURs  --ouput=fulls 1',
+    exec(`${cmd}  --f=USDG --to=EURs  --ouput=fulls 1`,
       function (err, stdout, stderr) {
         assert.isNull(err)
         assert.strictEqual(stdout, 'Currency no supported or bad spell\n')
@@ -37,7 +47,7 @@ describe('Conversion Logic', function () {
   })
 
   it('If conversion is good', function (done) {
-    exec('currencyconv  --f=USD --to=EUR  --ouput=fulls 1',
+    exec(`${cmd}  --f=USD --to=EUR  --ouput=fulls 1`,
       function (err, stdout, stderr) {
         assert.isNull(err)
         var result = stdout.split(' ')
