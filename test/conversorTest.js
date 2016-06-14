@@ -17,8 +17,6 @@ describe('Conversion Params', function () {
   // Further code for tests goes here
   it('If no params', function (done) {
     // Test implementation goes here
-
-
     exec(`${cmd}`,
       function (err, stdout, stderr) {
         assert.isNotNull(err)
